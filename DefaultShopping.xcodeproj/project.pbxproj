@@ -60,14 +60,38 @@
 		C71B66B42AAA02AD00F31616 /* DefaultShopping */ = {
 			isa = PBXGroup;
 			children = (
+				C71B66D32AAA192E00F31616 /* Resource */,
+				C71B66D22AAA192900F31616 /* Source */,
+				C71B66B92AAA02AD00F31616 /* ViewController.swift */,
+			);
+			path = DefaultShopping;
+			sourceTree = "<group>";
+		};
+		C71B66D12AAA192000F31616 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				C71B66B52AAA02AD00F31616 /* AppDelegate.swift */,
 				C71B66B72AAA02AD00F31616 /* SceneDelegate.swift */,
-				C71B66B92AAA02AD00F31616 /* ViewController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C71B66D22AAA192900F31616 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C71B66D12AAA192000F31616 /* App */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		C71B66D32AAA192E00F31616 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
 				C71B66BE2AAA02AD00F31616 /* Assets.xcassets */,
 				C71B66C02AAA02AD00F31616 /* LaunchScreen.storyboard */,
 				C71B66C32AAA02AD00F31616 /* Info.plist */,
 			);
-			path = DefaultShopping;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,7 +316,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SBAHW5F54N;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DefaultShopping/Info.plist;
+				INFOPLIST_FILE = DefaultShopping/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -323,7 +347,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SBAHW5F54N;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DefaultShopping/Info.plist;
+				INFOPLIST_FILE = DefaultShopping/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
