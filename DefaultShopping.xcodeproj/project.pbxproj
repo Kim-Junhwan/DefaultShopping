@@ -15,6 +15,7 @@
 		C71B66CB2AAA07A100F31616 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C71B66CA2AAA07A100F31616 /* SnapKit */; };
 		C71B66CE2AAA07B600F31616 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C71B66CD2AAA07B600F31616 /* Realm */; };
 		C71B66D02AAA07B600F31616 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C71B66CF2AAA07B600F31616 /* RealmSwift */; };
+		C71B66D52AAA1BE600F31616 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66D42AAA1BE600F31616 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		C71B66BE2AAA02AD00F31616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C71B66C12AAA02AD00F31616 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C71B66C32AAA02AD00F31616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C71B66D42AAA1BE600F31616 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,6 @@
 			children = (
 				C71B66D32AAA192E00F31616 /* Resource */,
 				C71B66D22AAA192900F31616 /* Source */,
-				C71B66B92AAA02AD00F31616 /* ViewController.swift */,
 			);
 			path = DefaultShopping;
 			sourceTree = "<group>";
@@ -79,7 +80,9 @@
 		C71B66D22AAA192900F31616 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C71B66B92AAA02AD00F31616 /* ViewController.swift */,
 				C71B66D12AAA192000F31616 /* App */,
+				C71B66D42AAA1BE600F31616 /* APIKey.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 			files = (
 				C71B66BA2AAA02AD00F31616 /* ViewController.swift in Sources */,
 				C71B66B62AAA02AD00F31616 /* AppDelegate.swift in Sources */,
+				C71B66D52AAA1BE600F31616 /* APIKey.swift in Sources */,
 				C71B66B82AAA02AD00F31616 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
