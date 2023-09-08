@@ -6,8 +6,8 @@
 //
 
 struct ProductPage {
-    let total: Int
-    let start: Int
+    let totalPage: Int
+    let currentPage: Int
     let productList: [Product]
 }
 
