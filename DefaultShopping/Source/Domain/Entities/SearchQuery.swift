@@ -6,7 +6,15 @@
 //
 
 struct SearchQuery {
+    
+    enum Sort: String {
+        case sim
+        case date
+        case asc
+        case dsc
+    }
+    
     let query: String
-    let start: Int
-    let sort: String
+    let page: Int
+    let sort: Sort
 }
