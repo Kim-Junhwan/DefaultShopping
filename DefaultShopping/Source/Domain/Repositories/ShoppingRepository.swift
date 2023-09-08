@@ -6,5 +6,5 @@
 //
 
 protocol ShoppingRepository {
-    func searchShoppingList(query: SearchQuery, completion: @escaping (ProductPage) -> Void) 
+    func searchShoppingList(query: SearchQuery, completion: @escaping (Result<ProductPage, Error>) -> Void) 
 }
