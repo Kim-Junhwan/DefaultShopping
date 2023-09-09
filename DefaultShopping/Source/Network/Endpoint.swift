@@ -26,7 +26,7 @@ extension Requestable {
         let endpoint = baseURL.appending(path)
         guard var urlComponents = URLComponents(string: endpoint) else { throw NetworkError.url }
         var queryItems: [URLQueryItem] = []
-        queryItems += networkConfig.queryParameter.map { URLQueryItem(name: $0.key, value: $0.value) }
+        queryItems += networkConfig.queryParameter.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
         let query = try queryParameter?.toQuery() ?? [:]
         queryItems += query.map { URLQueryItem(name: $0.key, value: String(describing: $0.value)) }
         urlComponents.queryItems = queryItems
