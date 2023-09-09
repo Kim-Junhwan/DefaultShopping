@@ -10,5 +10,5 @@ import Foundation
 struct NetworkConfiguration {
     var baseURL: URL
     var header: [String:String]
-    var queryParameter: [String:String]
+    var queryParameter: [String:Any]
 }
