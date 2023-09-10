@@ -22,9 +22,9 @@ extension DefaultShoppingRepository: ShoppingRepository {
         dataTransferService.request(endpoint: endpoint) { result in
             switch result {
             case .success(let success):
-                print(success.toDomain())
+                completion(.success(success.toDomain()))
             case .failure(let failure):
-                print(failure)
+                completion(.failure(failure))
             }
         }
     }
