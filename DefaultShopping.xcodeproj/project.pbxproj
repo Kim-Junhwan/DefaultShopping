@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C71B66B62AAA02AD00F31616 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66B52AAA02AD00F31616 /* AppDelegate.swift */; };
 		C71B66B82AAA02AD00F31616 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66B72AAA02AD00F31616 /* SceneDelegate.swift */; };
-		C71B66BA2AAA02AD00F31616 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66B92AAA02AD00F31616 /* ViewController.swift */; };
 		C71B66BF2AAA02AD00F31616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C71B66BE2AAA02AD00F31616 /* Assets.xcassets */; };
 		C71B66C22AAA02AD00F31616 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71B66C02AAA02AD00F31616 /* LaunchScreen.storyboard */; };
 		C71B66CB2AAA07A100F31616 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C71B66CA2AAA07A100F31616 /* SnapKit */; };
@@ -30,13 +29,19 @@
 		C71B66F72AAC083300F31616 /* SearchRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66F62AAC083300F31616 /* SearchRequestDTO.swift */; };
 		C71B66FA2AAC0FA300F31616 /* SearchResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66F92AAC0FA300F31616 /* SearchResponseDTO.swift */; };
 		C71B66FD2AAC879800F31616 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66FC2AAC879800F31616 /* Rule.swift */; };
+		C71B66FF2AAC95B700F31616 /* RealmBookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B66FE2AAC95B700F31616 /* RealmBookmarkRepository.swift */; };
+		C71B67022AAD73E600F31616 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67012AAD73E600F31616 /* CustomTabBarViewController.swift */; };
+		C71B67052AAD74E500F31616 /* ShoppingSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67042AAD74E500F31616 /* ShoppingSceneDIContainer.swift */; };
+		C71B67092AAD77DD00F31616 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67082AAD77DD00F31616 /* SearchViewController.swift */; };
+		C71B670B2AAD77E600F31616 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */; };
+		C71B670E2AAD81A100F31616 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B670D2AAD81A100F31616 /* BaseViewController.swift */; };
+		C71B67102AAD828A00F31616 /* ProductSearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B670F2AAD828A00F31616 /* ProductSearchListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C71B66B22AAA02AD00F31616 /* DefaultShopping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DefaultShopping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71B66B52AAA02AD00F31616 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C71B66B72AAA02AD00F31616 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C71B66B92AAA02AD00F31616 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C71B66BE2AAA02AD00F31616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C71B66C12AAA02AD00F31616 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C71B66C32AAA02AD00F31616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,6 +60,13 @@
 		C71B66F62AAC083300F31616 /* SearchRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRequestDTO.swift; sourceTree = "<group>"; };
 		C71B66F92AAC0FA300F31616 /* SearchResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponseDTO.swift; sourceTree = "<group>"; };
 		C71B66FC2AAC879800F31616 /* Rule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		C71B66FE2AAC95B700F31616 /* RealmBookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBookmarkRepository.swift; sourceTree = "<group>"; };
+		C71B67012AAD73E600F31616 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		C71B67042AAD74E500F31616 /* ShoppingSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingSceneDIContainer.swift; sourceTree = "<group>"; };
+		C71B67082AAD77DD00F31616 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		C71B670D2AAD81A100F31616 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C71B670F2AAD828A00F31616 /* ProductSearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +111,7 @@
 		C71B66D12AAA192000F31616 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				C71B67032AAD74CC00F31616 /* DI */,
 				C71B66B52AAA02AD00F31616 /* AppDelegate.swift */,
 				C71B66B72AAA02AD00F31616 /* SceneDelegate.swift */,
 			);
@@ -108,11 +121,11 @@
 		C71B66D22AAA192900F31616 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C71B67002AAD73C900F31616 /* Presentation */,
 				C71B66FB2AAC878A00F31616 /* Common */,
 				C71B66E92AAB71B800F31616 /* Network */,
 				C71B66E42AAB6F8E00F31616 /* Data */,
 				C71B66D62AAA23A500F31616 /* Domain */,
-				C71B66B92AAA02AD00F31616 /* ViewController.swift */,
 				C71B66D12AAA192000F31616 /* App */,
 				C71B66D42AAA1BE600F31616 /* APIKey.swift */,
 			);
@@ -179,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				C71B66E62AAB6FCB00F31616 /* DefaultShoppingRepository.swift */,
+				C71B66FE2AAC95B700F31616 /* RealmBookmarkRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -225,6 +239,34 @@
 				C71B66FC2AAC879800F31616 /* Rule.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C71B67002AAD73C900F31616 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C71B670C2AAD819300F31616 /* Base */,
+				C71B67012AAD73E600F31616 /* CustomTabBarViewController.swift */,
+				C71B67082AAD77DD00F31616 /* SearchViewController.swift */,
+				C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */,
+				C71B670F2AAD828A00F31616 /* ProductSearchListView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C71B67032AAD74CC00F31616 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				C71B67042AAD74E500F31616 /* ShoppingSceneDIContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		C71B670C2AAD819300F31616 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C71B670D2AAD81A100F31616 /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,15 +348,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71B670B2AAD77E600F31616 /* BookmarkViewController.swift in Sources */,
 				C71B66F42AAC01BE00F31616 /* APIEndpoints.swift in Sources */,
 				C71B66FA2AAC0FA300F31616 /* SearchResponseDTO.swift in Sources */,
+				C71B670E2AAD81A100F31616 /* BaseViewController.swift in Sources */,
 				C71B66F12AAB725C00F31616 /* DataTransferService.swift in Sources */,
 				C71B66FD2AAC879800F31616 /* Rule.swift in Sources */,
-				C71B66BA2AAA02AD00F31616 /* ViewController.swift in Sources */,
+				C71B67052AAD74E500F31616 /* ShoppingSceneDIContainer.swift in Sources */,
 				C71B66E02AAB390600F31616 /* BookmarkRepository.swift in Sources */,
+				C71B67022AAD73E600F31616 /* CustomTabBarViewController.swift in Sources */,
 				C71B66E32AAB526E00F31616 /* SearchProductUseCase.swift in Sources */,
+				C71B66FF2AAC95B700F31616 /* RealmBookmarkRepository.swift in Sources */,
 				C71B66B62AAA02AD00F31616 /* AppDelegate.swift in Sources */,
+				C71B67102AAD828A00F31616 /* ProductSearchListView.swift in Sources */,
 				C71B66E72AAB6FCB00F31616 /* DefaultShoppingRepository.swift in Sources */,
+				C71B67092AAD77DD00F31616 /* SearchViewController.swift in Sources */,
 				C71B66F72AAC083300F31616 /* SearchRequestDTO.swift in Sources */,
 				C71B66DC2AAB183600F31616 /* SearchQuery.swift in Sources */,
 				C71B66D92AAA23D000F31616 /* ShoppingRepository.swift in Sources */,
