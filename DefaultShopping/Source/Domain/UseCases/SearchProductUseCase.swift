@@ -5,6 +5,8 @@
 //  Created by JunHwan Kim on 2023/09/08.
 //
 
+import Foundation
+
 protocol SearchProductUseCase {
     func search(searchKeyword: String, page: Int, sort: SearchQuery.Sort,completion: @escaping (Result<ProductPage, Error>) -> Void )
 }
@@ -24,11 +26,13 @@ final class DefaultSearchProductUseCase: SearchProductUseCase {
             var productList: [Product] = []
             switch result {
             case .success(let page):
-                page.productList.forEach { product in
-                    let isContainBookmakr = self.bookmarkRepository.checkContainInBookmark(product: product)
-                    productList.append(Product(id: product.id, title: product.title, imagePath: product.imagePath, price: product.price, detailLink: product.detailLink, mall: product.mall, like: isContainBookmakr))
+                DispatchQueue.main.async {
+                    page.productList.forEach { product in
+                        let isContainBookmakr = self.bookmarkRepository.checkContainInBookmark(product: product)
+                        productList.append(Product(id: product.id, title: product.title, imagePath: product.imagePath, price: product.price, detailLink: product.detailLink, mall: product.mall, like: isContainBookmakr))
+                    }
+                    completion(.success(ProductPage(totalPage: page.totalPage, currentPage: page.currentPage, productList: productList)))
                 }
-                completion(.success(ProductPage(totalPage: page.totalPage, currentPage: page.currentPage, productList: productList)))
             case .failure(let failure):
                 completion(.failure(failure))
             }
