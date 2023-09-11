@@ -23,10 +23,16 @@ class BaseViewController: UIViewController {
     }
     
     func configureView() {
-        
     }
     
     func setConstraints() {
+    }
+    
+    func showErrorAlert(error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default)
+        alert.addAction(ok)
+        present(alert, animated: true)
     }
 
 }
