@@ -9,7 +9,7 @@ import Foundation
 
 enum NetworkError: Error {
     case responseError(statusCode: Int, data: Data?)
-    case networkError(Error)
+    case networkError(error: Error)
     case url
 }
 
@@ -36,7 +36,7 @@ extension DefaultNetworkService: NetworkService {
                     if let response = response as? HTTPURLResponse {
                         completion(.failure(.responseError(statusCode: response.statusCode, data: data)))
                     } else {
-                        completion(.failure(.networkError(error)))
+                        completion(.failure(.networkError(error: error)))
                     }
                 } else {
                     completion(.success(data))
