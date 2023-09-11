@@ -10,4 +10,5 @@ protocol BookmarkRepository {
     func checkContainInBookmark(product: Product) -> Bool
     func fetchSavedProductList(displayCount: Int) -> [Product]
     func deleteProduct(product: Product) throws
+    func searchProducts(title: String) -> [Product]
 }
