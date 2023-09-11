@@ -12,7 +12,7 @@ struct SearchRequestDTO: Encodable {
     let sort: String
     let start: Int
     
-    init(page: Int, query: String, sort: SearchQuery.Sort) {
+    init(page: Int, query: String, sort: Sort) {
         self.query = query
         self.sort = sort.rawValue
         self.start = ((page-1) * Rule.displayCount) + 1

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchProductUseCase {
-    func search(searchKeyword: String, page: Int, sort: SearchQuery.Sort,completion: @escaping (Result<ProductPage, Error>) -> Void )
+    func search(searchKeyword: String, page: Int, sort: Sort,completion: @escaping (Result<ProductPage, Error>) -> Void )
 }
 
 final class DefaultSearchProductUseCase: SearchProductUseCase {
@@ -21,7 +21,7 @@ final class DefaultSearchProductUseCase: SearchProductUseCase {
         self.bookmarkRepository = bookmarkRepository
     }
     
-    func search(searchKeyword: String, page: Int, sort: SearchQuery.Sort = .sim ,completion: @escaping (Result<ProductPage, Error>) -> Void) {
+    func search(searchKeyword: String, page: Int, sort: Sort = .sim ,completion: @escaping (Result<ProductPage, Error>) -> Void) {
         shoppingRepository.searchShoppingList(query: .init(query: searchKeyword, page: page, sort: sort)) { result in
             var productList: [Product] = []
             switch result {

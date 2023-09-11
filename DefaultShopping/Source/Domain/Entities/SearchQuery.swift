@@ -5,14 +5,27 @@
 //  Created by JunHwan Kim on 2023/09/08.
 //
 
-struct SearchQuery {
+enum Sort: String, CaseIterable {
+    case sim
+    case date
+    case asc
+    case dsc
     
-    enum Sort: String {
-        case sim
-        case date
-        case asc
-        case dsc
+    var title: String {
+        switch self {
+        case .sim:
+            return "정확도"
+        case .date:
+            return "날짜순"
+        case .asc:
+            return "가격높은순"
+        case .dsc:
+            return "가격낮은순"
+        }
     }
+}
+
+struct SearchQuery {
     
     let query: String
     let page: Int
