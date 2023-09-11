@@ -8,8 +8,8 @@
 enum Sort: String, CaseIterable {
     case sim
     case date
-    case asc
     case dsc
+    case asc
     
     var title: String {
         switch self {
@@ -18,9 +18,9 @@ enum Sort: String, CaseIterable {
         case .date:
             return "날짜순"
         case .asc:
-            return "가격높은순"
-        case .dsc:
             return "가격낮은순"
+        case .dsc:
+            return "가격높은순"
         }
     }
 }
