@@ -36,6 +36,12 @@
 		C71B670B2AAD77E600F31616 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */; };
 		C71B670E2AAD81A100F31616 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B670D2AAD81A100F31616 /* BaseViewController.swift */; };
 		C71B67102AAD828A00F31616 /* ProductSearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B670F2AAD828A00F31616 /* ProductSearchListView.swift */; };
+		C71B67132AAD91BF00F31616 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67122AAD91BF00F31616 /* ProductCollectionViewCell.swift */; };
+		C71B67162AADA3A400F31616 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67152AADA3A400F31616 /* UIImageView+.swift */; };
+		C71B67182AADAD8700F31616 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67172AADAD8700F31616 /* LikeButton.swift */; };
+		C71B671D2AADC17D00F31616 /* SortCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B671C2AADC17D00F31616 /* SortCollectionViewCell.swift */; };
+		C71B671F2AADDE7F00F31616 /* SortCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegate.swift */; };
+		C71B67232AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67222AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +73,12 @@
 		C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		C71B670D2AAD81A100F31616 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C71B670F2AAD828A00F31616 /* ProductSearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchListView.swift; sourceTree = "<group>"; };
+		C71B67122AAD91BF00F31616 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		C71B67152AADA3A400F31616 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
+		C71B67172AADAD8700F31616 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		C71B671C2AADC17D00F31616 /* SortCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewCell.swift; sourceTree = "<group>"; };
+		C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		C71B67222AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewDelegateDatasource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,7 @@
 		C71B66D22AAA192900F31616 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C71B67142AADA39000F31616 /* Extension */,
 				C71B67002AAD73C900F31616 /* Presentation */,
 				C71B66FB2AAC878A00F31616 /* Common */,
 				C71B66E92AAB71B800F31616 /* Network */,
@@ -244,11 +257,11 @@
 		C71B67002AAD73C900F31616 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				C71B67212AADE21B00F31616 /* ViewControllers */,
+				C71B67112AAD919E00F31616 /* ProductCollectionView */,
 				C71B670C2AAD819300F31616 /* Base */,
-				C71B67012AAD73E600F31616 /* CustomTabBarViewController.swift */,
-				C71B67082AAD77DD00F31616 /* SearchViewController.swift */,
-				C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */,
-				C71B670F2AAD828A00F31616 /* ProductSearchListView.swift */,
+				C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegate.swift */,
+				C71B67222AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -267,6 +280,51 @@
 				C71B670D2AAD81A100F31616 /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		C71B67112AAD919E00F31616 /* ProductCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				C71B671B2AADC16E00F31616 /* SortCell */,
+				C71B671A2AADC16700F31616 /* ProductCell */,
+				C71B670F2AAD828A00F31616 /* ProductSearchListView.swift */,
+			);
+			path = ProductCollectionView;
+			sourceTree = "<group>";
+		};
+		C71B67142AADA39000F31616 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C71B67152AADA3A400F31616 /* UIImageView+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C71B671A2AADC16700F31616 /* ProductCell */ = {
+			isa = PBXGroup;
+			children = (
+				C71B67172AADAD8700F31616 /* LikeButton.swift */,
+				C71B67122AAD91BF00F31616 /* ProductCollectionViewCell.swift */,
+			);
+			path = ProductCell;
+			sourceTree = "<group>";
+		};
+		C71B671B2AADC16E00F31616 /* SortCell */ = {
+			isa = PBXGroup;
+			children = (
+				C71B671C2AADC17D00F31616 /* SortCollectionViewCell.swift */,
+			);
+			path = SortCell;
+			sourceTree = "<group>";
+		};
+		C71B67212AADE21B00F31616 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C71B67012AAD73E600F31616 /* CustomTabBarViewController.swift */,
+				C71B67082AAD77DD00F31616 /* SearchViewController.swift */,
+				C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,7 +406,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71B67162AADA3A400F31616 /* UIImageView+.swift in Sources */,
 				C71B670B2AAD77E600F31616 /* BookmarkViewController.swift in Sources */,
+				C71B671D2AADC17D00F31616 /* SortCollectionViewCell.swift in Sources */,
+				C71B67232AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift in Sources */,
 				C71B66F42AAC01BE00F31616 /* APIEndpoints.swift in Sources */,
 				C71B66FA2AAC0FA300F31616 /* SearchResponseDTO.swift in Sources */,
 				C71B670E2AAD81A100F31616 /* BaseViewController.swift in Sources */,
@@ -357,10 +418,12 @@
 				C71B67052AAD74E500F31616 /* ShoppingSceneDIContainer.swift in Sources */,
 				C71B66E02AAB390600F31616 /* BookmarkRepository.swift in Sources */,
 				C71B67022AAD73E600F31616 /* CustomTabBarViewController.swift in Sources */,
+				C71B67182AADAD8700F31616 /* LikeButton.swift in Sources */,
 				C71B66E32AAB526E00F31616 /* SearchProductUseCase.swift in Sources */,
 				C71B66FF2AAC95B700F31616 /* RealmBookmarkRepository.swift in Sources */,
 				C71B66B62AAA02AD00F31616 /* AppDelegate.swift in Sources */,
 				C71B67102AAD828A00F31616 /* ProductSearchListView.swift in Sources */,
+				C71B671F2AADDE7F00F31616 /* SortCollectionViewDelegate.swift in Sources */,
 				C71B66E72AAB6FCB00F31616 /* DefaultShoppingRepository.swift in Sources */,
 				C71B67092AAD77DD00F31616 /* SearchViewController.swift in Sources */,
 				C71B66F72AAC083300F31616 /* SearchRequestDTO.swift in Sources */,
@@ -370,6 +433,7 @@
 				C71B66B82AAA02AD00F31616 /* SceneDelegate.swift in Sources */,
 				C71B66EB2AAB720F00F31616 /* Endpoint.swift in Sources */,
 				C71B66DE2AAB285700F31616 /* Product.swift in Sources */,
+				C71B67132AAD91BF00F31616 /* ProductCollectionViewCell.swift in Sources */,
 				C71B66EF2AAB723B00F31616 /* NetworkService.swift in Sources */,
 				C71B66ED2AAB722900F31616 /* NetworkConfiguration.swift in Sources */,
 			);
