@@ -30,6 +30,6 @@ struct ProductDTO: Decodable {
     func toDomain() -> Product {
         let id = Int(productId) ?? 0
         let price = Int(lprice) ?? 0
-        return .init(id: id, title: title, imagePath: image, price: price, detailLink: link, mall: mallName, like: false)
+        return .init(id: id, title: title.removeHTMLTag(), imagePath: image, price: price, detailLink: link, mall: mallName, like: false)
     }
 }
