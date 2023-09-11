@@ -13,6 +13,13 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         setConstraints()
+        setNavigationController()
+    }
+    
+    private func setNavigationController() {
+        let appearence = UINavigationBarAppearance()
+        appearence.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationItem.standardAppearance = appearence
     }
     
     func configureView() {
@@ -20,7 +27,6 @@ class BaseViewController: UIViewController {
     }
     
     func setConstraints() {
-        
     }
 
 }
