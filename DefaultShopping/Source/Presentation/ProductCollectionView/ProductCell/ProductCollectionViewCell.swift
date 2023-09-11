@@ -16,7 +16,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.distribution = .fill
-        stackView.spacing = 1
+        stackView.spacing = 5
         return stackView
     }()
     
@@ -107,5 +107,10 @@ class ProductCollectionViewCell: UICollectionViewCell {
         mallLabel.text = product.mall
         productNameLabel.text = product.title
         priceLabel.text = "\(product.price)"
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        productImageView.image = nil
     }
 }
