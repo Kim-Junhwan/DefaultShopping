@@ -36,6 +36,7 @@ final class RealmBookmarkRepository {
 }
 
 extension RealmBookmarkRepository: BookmarkRepository {
+    
     func saveProduct(product: Product) throws {
         guard let realm else { return }
         try realm.write {
@@ -59,8 +60,15 @@ extension RealmBookmarkRepository: BookmarkRepository {
     
     func deleteProduct(product: Product) throws {
         guard let realm else { return }
+        guard let fetchData = realm.object(ofType: BookmarkedProduct.self, forPrimaryKey: product.id) else { return }
         try realm.write {
-            realm.delete(BookmarkedProduct(id: product.id, title: product.title, imagePath: product.imagePath, price: product.price, detailLink: product.detailLink, mall: product.mall))
+            realm.delete(fetchData)
         }
+    }
+    
+    func searchProducts(title: String) -> [Product] {
+        guard let realm else { return [] }
+        let fetchObject = realm.objects(BookmarkedProduct.self).where { $0.title.contains(title) }
+        return fetchObject.map { $0.toDomain() }
     }
 }
