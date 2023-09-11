@@ -40,8 +40,11 @@
 		C71B67162AADA3A400F31616 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67152AADA3A400F31616 /* UIImageView+.swift */; };
 		C71B67182AADAD8700F31616 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67172AADAD8700F31616 /* LikeButton.swift */; };
 		C71B671D2AADC17D00F31616 /* SortCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B671C2AADC17D00F31616 /* SortCollectionViewCell.swift */; };
-		C71B671F2AADDE7F00F31616 /* SortCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegate.swift */; };
+		C71B671F2AADDE7F00F31616 /* SortCollectionViewDelegateDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegateDatasource.swift */; };
 		C71B67232AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67222AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift */; };
+		C71B675B2AAEE68D00F31616 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B675A2AAEE68D00F31616 /* String+.swift */; };
+		C71B675D2AAF06E700F31616 /* SetBookmarkUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B675C2AAF06E700F31616 /* SetBookmarkUseCase.swift */; };
+		C71B675F2AAF18A100F31616 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B675E2AAF18A100F31616 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,8 +80,11 @@
 		C71B67152AADA3A400F31616 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		C71B67172AADAD8700F31616 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		C71B671C2AADC17D00F31616 /* SortCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewCell.swift; sourceTree = "<group>"; };
-		C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegateDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewDelegateDatasource.swift; sourceTree = "<group>"; };
 		C71B67222AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewDelegateDatasource.swift; sourceTree = "<group>"; };
+		C71B675A2AAEE68D00F31616 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		C71B675C2AAF06E700F31616 /* SetBookmarkUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBookmarkUseCase.swift; sourceTree = "<group>"; };
+		C71B675E2AAF18A100F31616 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				C71B66E22AAB526E00F31616 /* SearchProductUseCase.swift */,
+				C71B675C2AAF06E700F31616 /* SetBookmarkUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -260,7 +267,7 @@
 				C71B67212AADE21B00F31616 /* ViewControllers */,
 				C71B67112AAD919E00F31616 /* ProductCollectionView */,
 				C71B670C2AAD819300F31616 /* Base */,
-				C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegate.swift */,
+				C71B671E2AADDE7F00F31616 /* SortCollectionViewDelegateDatasource.swift */,
 				C71B67222AADE23100F31616 /* ProductCollectionViewDelegateDatasource.swift */,
 			);
 			path = Presentation;
@@ -296,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				C71B67152AADA3A400F31616 /* UIImageView+.swift */,
+				C71B675A2AAEE68D00F31616 /* String+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -323,6 +331,7 @@
 				C71B67012AAD73E600F31616 /* CustomTabBarViewController.swift */,
 				C71B67082AAD77DD00F31616 /* SearchViewController.swift */,
 				C71B670A2AAD77E600F31616 /* BookmarkViewController.swift */,
+				C71B675E2AAF18A100F31616 /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -406,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C71B675F2AAF18A100F31616 /* DetailViewController.swift in Sources */,
 				C71B67162AADA3A400F31616 /* UIImageView+.swift in Sources */,
 				C71B670B2AAD77E600F31616 /* BookmarkViewController.swift in Sources */,
 				C71B671D2AADC17D00F31616 /* SortCollectionViewCell.swift in Sources */,
@@ -423,18 +433,20 @@
 				C71B66FF2AAC95B700F31616 /* RealmBookmarkRepository.swift in Sources */,
 				C71B66B62AAA02AD00F31616 /* AppDelegate.swift in Sources */,
 				C71B67102AAD828A00F31616 /* ProductSearchListView.swift in Sources */,
-				C71B671F2AADDE7F00F31616 /* SortCollectionViewDelegate.swift in Sources */,
+				C71B671F2AADDE7F00F31616 /* SortCollectionViewDelegateDatasource.swift in Sources */,
 				C71B66E72AAB6FCB00F31616 /* DefaultShoppingRepository.swift in Sources */,
 				C71B67092AAD77DD00F31616 /* SearchViewController.swift in Sources */,
 				C71B66F72AAC083300F31616 /* SearchRequestDTO.swift in Sources */,
 				C71B66DC2AAB183600F31616 /* SearchQuery.swift in Sources */,
 				C71B66D92AAA23D000F31616 /* ShoppingRepository.swift in Sources */,
 				C71B66D52AAA1BE600F31616 /* APIKey.swift in Sources */,
+				C71B675B2AAEE68D00F31616 /* String+.swift in Sources */,
 				C71B66B82AAA02AD00F31616 /* SceneDelegate.swift in Sources */,
 				C71B66EB2AAB720F00F31616 /* Endpoint.swift in Sources */,
 				C71B66DE2AAB285700F31616 /* Product.swift in Sources */,
 				C71B67132AAD91BF00F31616 /* ProductCollectionViewCell.swift in Sources */,
 				C71B66EF2AAB723B00F31616 /* NetworkService.swift in Sources */,
+				C71B675D2AAF06E700F31616 /* SetBookmarkUseCase.swift in Sources */,
 				C71B66ED2AAB722900F31616 /* NetworkConfiguration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,9 +586,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SBAHW5F54N;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultShopping/Resource/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "김준환";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -587,7 +600,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kimjunhwan.DefaultShopping;
+				PRODUCT_BUNDLE_IDENTIFIER = Kimjunhwan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -605,9 +618,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SBAHW5F54N;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DefaultShopping/Resource/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "김준환";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -618,7 +632,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kimjunhwan.DefaultShopping;
+				PRODUCT_BUNDLE_IDENTIFIER = Kimjunhwan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
