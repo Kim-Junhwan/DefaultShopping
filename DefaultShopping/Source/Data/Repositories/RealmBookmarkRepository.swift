@@ -15,6 +15,7 @@ class BookmarkedProduct: Object {
     @Persisted var price: Int
     @Persisted var detailLink: String
     @Persisted var mall: String
+    @Persisted var date: Date
     
     convenience init(id: Int, title: String, imagePath: String, price: Int, detailLink: String, mall: String) {
         self.init()
@@ -24,6 +25,7 @@ class BookmarkedProduct: Object {
         self.price = price
         self.detailLink = detailLink
         self.mall = mall
+        self.date = Date()
     }
     
     func toDomain() -> Product {
@@ -54,7 +56,7 @@ extension RealmBookmarkRepository: BookmarkRepository {
     
     func fetchSavedProductList(displayCount: Int) -> [Product] {
         guard let realm else { return [] }
-        let fetchObject = realm.objects(BookmarkedProduct.self)
+        let fetchObject = realm.objects(BookmarkedProduct.self).sorted(by: \.date, ascending: false)
         return fetchObject.map { $0.toDomain() }
     }
     
