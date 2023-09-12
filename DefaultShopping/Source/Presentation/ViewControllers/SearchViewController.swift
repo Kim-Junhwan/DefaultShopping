@@ -42,12 +42,7 @@ class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productListView.productListCollectionView.delegate = self
-        productListView.productListCollectionView.dataSource = self
-        productListView.sortButtonCollectionView.delegate = self
-        productListView.sortButtonCollectionView.dataSource = self
-        productListView.sortButtonCollectionView.selectItem(at: [0,0], animated: false, scrollPosition: .init())
-        
+        productListView.productListCollectionView.reloadData()
     }
     
     override func loadView() {
@@ -62,58 +57,6 @@ class SearchViewController: BaseViewController {
     override func setConstraints() {
         super.setConstraints()
         title = "쇼핑검색"
-    }
-    
-    @objc func tapLikeButton(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        var selectProduct = productList[sender.tag]
-        selectProduct.like = true
-        do {
-            try bookmarkUseCase.setBookmark(product: selectProduct)
-        } catch {
-            self.showErrorAlert(error: error)
-        }
-    }
-
-}
-
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == productListView.sortButtonCollectionView {
-            return Sort.allCases.count
-        } else {
-            return productList.count
-        }
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == productListView.sortButtonCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SortCollectionViewCell.identifier, for: indexPath) as? SortCollectionViewCell else { return .init() }
-            cell.sortTitleLabel.text = Sort.allCases[indexPath.row].title
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return .init() }
-            cell.likeButton.tag = indexPath.row
-            cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
-            cell.configureCell(product: productList[indexPath.row])
-            return cell
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == productListView.productListCollectionView {
-            let detailVC = DetailViewController(product: productList[indexPath.row], bookmarkRepository: realmRepository)
-            navigationController?.pushViewController(detailVC, animated: true)
-        } else {
-            if !productListView.searchBar.text!.isEmpty {
-                search(keyword: productListView.searchBar.text!)
-            }
-        }
     }
     
     func fetchProductList(keyword: String, sort: Sort = .sim) {
@@ -136,26 +79,43 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             self.isFetching = false
         }
     }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y >=  (scrollView.contentSize.height-(scrollView.frame.height-tabBarController!.tabBar.frame.height)) && !isFetching && hasMorePage {
-            isFetching = true
-            let selectedSorted = Sort.allCases[productListView.sortButtonCollectionView.indexPathsForSelectedItems?.first?.row ?? 0]
-            fetchProductList(keyword: self.productListView.searchBar.text!, sort: selectedSorted)
-        }
-        isFetching = false
-    }
 }
 
 extension SearchViewController: ProductSearchListViewDelegate {
+    func productCollectionViewItemCount() -> Int {
+        return productList.count
+    }
     
-    func search(keyword: String) {
+    func productCollectionViewCellForRowAt(at indexPath: IndexPath) -> Product? {
+        return productList[indexPath.row]
+    }
+    
+    func search(keyword: String, selectedSort: Sort) {
         self.currentPage = 0
         self.totalPage = 1
         productList.removeAll()
         productListView.productListCollectionView.reloadData()
-        let selectedSorted = Sort.allCases[productListView.sortButtonCollectionView.indexPathsForSelectedItems?.first?.row ?? 0]
-        fetchProductList(keyword: keyword, sort: selectedSorted)
+        fetchProductList(keyword: keyword, sort: selectedSort)
+    }
+    
+    func fetchNextProductList(keyword: String) {
+        fetchProductList(keyword: keyword)
+    }
+    
+    func tapProductCollectionView(product: Product) {
+        let vc = DetailViewController(product: product, bookmarkRepository: realmRepository)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tapLikeButton(index: Int) -> Bool? {
+        let selectedProduct = productList[index]
+        do {
+            let result = try bookmarkUseCase.setBookmark(product: selectedProduct)
+            return result
+        } catch {
+            showErrorAlert(error: error)
+            return nil
+        }
     }
     
 }
