@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SetBookmarkUseCase {
-    func setBookmark(product: Product) throws
+    func setBookmark(product: Product) throws -> Bool
 }
 
 final class RealmSetBookmarkUseCase {
@@ -20,12 +20,13 @@ final class RealmSetBookmarkUseCase {
 }
 
 extension RealmSetBookmarkUseCase: SetBookmarkUseCase {
-    
-    func setBookmark(product: Product) throws {
+    func setBookmark(product: Product) throws -> Bool {
         if bookmark.checkContainInBookmark(product: product) {
             try bookmark.deleteProduct(product: product)
+            return false
         } else {
             try bookmark.saveProduct(product: product)
+            return true
         }
     }
 }
