@@ -99,7 +99,9 @@ extension SearchViewController: ProductSearchListViewDelegate {
     }
     
     func fetchNextProductList(keyword: String) {
-        fetchProductList(keyword: keyword)
+        if hasMorePage {
+            fetchProductList(keyword: keyword)
+        }
     }
     
     func tapProductCollectionView(product: Product) {
