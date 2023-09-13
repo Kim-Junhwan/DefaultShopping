@@ -8,7 +8,6 @@
 protocol BookmarkRepository {
     func saveProduct(product: Product) throws
     func checkContainInBookmark(product: Product) -> Bool
-    func fetchSavedProductList(displayCount: Int) -> [Product]
+    func fetchSavedProcutPage(query: BookmarkSearchQuery) -> ProductPage
     func deleteProduct(product: Product) throws
-    func searchProducts(title: String) -> [Product]
 }

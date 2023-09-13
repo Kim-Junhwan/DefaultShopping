@@ -45,6 +45,7 @@
 		C71B675F2AAF18A100F31616 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B675E2AAF18A100F31616 /* DetailViewController.swift */; };
 		C71B67622AAFE2CF00F31616 /* ProductListDelegateDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67612AAFE2CF00F31616 /* ProductListDelegateDatasource.swift */; };
 		C71B67702AB0B64500F31616 /* SortCollectionViewDeleDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B676F2AB0B64500F31616 /* SortCollectionViewDeleDatasource.swift */; };
+		C71B67892AB2059000F31616 /* BookmarkSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67882AB2059000F31616 /* BookmarkSearchQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		C71B675E2AAF18A100F31616 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C71B67612AAFE2CF00F31616 /* ProductListDelegateDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListDelegateDatasource.swift; sourceTree = "<group>"; };
 		C71B676F2AB0B64500F31616 /* SortCollectionViewDeleDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewDeleDatasource.swift; sourceTree = "<group>"; };
+		C71B67882AB2059000F31616 /* BookmarkSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSearchQuery.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				C71B66DB2AAB183600F31616 /* SearchQuery.swift */,
 				C71B66DD2AAB285700F31616 /* Product.swift */,
+				C71B67882AB2059000F31616 /* BookmarkSearchQuery.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				C71B671D2AADC17D00F31616 /* SortCollectionViewCell.swift in Sources */,
 				C71B66F42AAC01BE00F31616 /* APIEndpoints.swift in Sources */,
 				C71B66FA2AAC0FA300F31616 /* SearchResponseDTO.swift in Sources */,
+				C71B67892AB2059000F31616 /* BookmarkSearchQuery.swift in Sources */,
 				C71B670E2AAD81A100F31616 /* BaseViewController.swift in Sources */,
 				C71B66F12AAB725C00F31616 /* DataTransferService.swift in Sources */,
 				C71B66FD2AAC879800F31616 /* Rule.swift in Sources */,
