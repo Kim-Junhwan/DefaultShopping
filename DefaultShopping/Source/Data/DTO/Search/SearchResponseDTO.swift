@@ -13,7 +13,7 @@ struct SearchResponseDTO: Decodable {
     let items: [ProductDTO]
     
     func toDomain() -> ProductPage {
-        let totalPage = total/Rule.displayCount == 0 ? total/Rule.displayCount : (total/Rule.displayCount)+1
+        let totalPage = total%Rule.displayCount == 0 ? total/Rule.displayCount : (total/Rule.displayCount)+1
         let currentPage = (start/Rule.displayCount)+1
         return .init(totalPage: totalPage, currentPage: currentPage, productList: items.map{ $0.toDomain() })
     }
