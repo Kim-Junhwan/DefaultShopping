@@ -106,7 +106,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
         likeButton.isSelected = product.like
         mallLabel.text = product.mall
         productNameLabel.text = product.title
-        priceLabel.text = "\(product.price)"
+        priceLabel.text = priceFormat(price: product.price)
+    }
+    
+    private func priceFormat(price: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        guard let formattedText = formatter.string(from: .init(value: price)) else { return "" }
+        return formattedText
     }
     
     override func prepareForReuse() {
