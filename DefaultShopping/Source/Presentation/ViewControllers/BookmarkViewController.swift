@@ -10,9 +10,20 @@ import UIKit
 class BookmarkViewController: BaseViewController {
     
     let productListView = ProductSearchListView()
-    
     let realmReposity: BookmarkRepository
-    
+    var currentPage: Int = 0
+    var totalPage: Int = 1
+    var hasMorePage: Bool {
+        get {
+            currentPage < totalPage
+        }
+    }
+    var nextPage: Int {
+        get {
+            hasMorePage ? currentPage + 1 : currentPage
+        }
+    }
+    var isFetching: Bool = false
     var productList: [Product] = []
     
     init(realmReposity: BookmarkRepository) {
@@ -29,56 +40,91 @@ class BookmarkViewController: BaseViewController {
         title = "좋아요 목록"
         productListView.delegate = self
         productListView.sortButtonCollectionView.isHidden = true
-        productListView.productListCollectionView.delegate = self
-        productListView.productListCollectionView.dataSource = self
+        fetchProductList()
+        productListView.productListCollectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        productList = realmReposity.fetchSavedProductList(displayCount: 30)
-        productListView.productListCollectionView.reloadData()
     }
     
     override func loadView() {
         view = productListView
     }
     
-    @objc func tapLikeButton(_ sender: UIButton) {
-        try! self.realmReposity.deleteProduct(product: self.productList[sender.tag])
-        productList = realmReposity.fetchSavedProductList(displayCount: 30)
-        productListView.productListCollectionView.reloadData()
+    private func fetchProductList(title: String = "") {
+        let fetchProductList = realmReposity.fetchSavedProcutPage(query: .init(title: title, page: nextPage))
+        print(fetchProductList)
+        currentPage = fetchProductList.currentPage
+        totalPage = fetchProductList.totalPage
+        productList.append(contentsOf: fetchProductList.productList)
+        
     }
 
-}
-
-extension BookmarkViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        productList.count
+    private func set(product: Product) throws -> Bool {
+        if realmReposity.checkContainInBookmark(product: product) {
+            try realmReposity.deleteProduct(product: product)
+            return false
+        } else {
+            try realmReposity.saveProduct(product: product)
+            return true
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return .init() }
-        cell.likeButton.tag = indexPath.row
-        cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
-        cell.configureCell(product: productList[indexPath.row])
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = DetailViewController(product: productList[indexPath.row], bookmarkRepository: realmReposity)
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
 }
 
 extension BookmarkViewController: ProductSearchListViewDelegate {
     
-    func search(keyword: String) {
+    func productCollectionViewCellForRowAt(at indexPath: IndexPath) -> Product? {
+        return productList[indexPath.row]
+    }
+    
+    func productCollectionViewItemCount() -> Int {
+        return productList.count
+    }
+    
+    func search(keyword: String, selectedSort: Sort) {
+        productList.removeAll()
+        currentPage = 0
+        totalPage = 1
         if keyword.isEmpty {
-            productList = realmReposity.fetchSavedProductList(displayCount: 30)
+            fetchProductList()
         } else {
-            productList = realmReposity.searchProducts(title: keyword)
+            fetchProductList(title: keyword)
         }
         productListView.productListCollectionView.reloadData()
+    }
+    
+    func fetchNextProductList(keyword: String) {
+        if hasMorePage {
+            fetchProductList(title: keyword)
+            productListView.productListCollectionView.reloadData()
+        }
+    }
+    
+    func tapProductCollectionView(product: Product) {
+        let vc = DetailViewController(product: product, bookmarkRepository: realmReposity)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tapLikeButton(index: Int) -> Bool? {
+        let product = productList[index]
+        let repeatNum = currentPage
+        do {
+            let result = try set(product: product)
+            productList.removeAll()
+            currentPage = 0
+            totalPage = 1
+            for _ in 0..<repeatNum {
+                fetchProductList()
+            }
+            productListView.productListCollectionView.reloadData()
+            return result
+        } catch {
+            showErrorAlert(error: error)
+            return nil
+        }
+        
     }
     
 }
