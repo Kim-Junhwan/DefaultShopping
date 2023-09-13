@@ -39,6 +39,7 @@ final class RealmBookmarkRepository {
 
 extension RealmBookmarkRepository: BookmarkRepository {
     
+    
     func saveProduct(product: Product) throws {
         guard let realm else { return }
         try realm.write {
@@ -54,10 +55,20 @@ extension RealmBookmarkRepository: BookmarkRepository {
         return true
     }
     
-    func fetchSavedProductList(displayCount: Int) -> [Product] {
-        guard let realm else { return [] }
-        let fetchObject = realm.objects(BookmarkedProduct.self).sorted(by: \.date, ascending: false)
-        return fetchObject.map { $0.toDomain() }
+    func fetchSavedProcutPage(query: BookmarkSearchQuery) -> ProductPage {
+        guard let realm else { return .init(totalPage: 0, currentPage: 1, productList: []) }
+        let fetchResult: Results<BookmarkedProduct>
+        if query.title.isEmpty {
+            fetchResult = realm.objects(BookmarkedProduct.self)
+        } else {
+            fetchResult = realm.objects(BookmarkedProduct.self).where { $0.title.contains(query.title) }
+        }
+        let start = (query.page-1)*Rule.displayCount
+        let end = fetchResult.count < query.page*Rule.displayCount ? fetchResult.count : query.page*Rule.displayCount
+        let sortedResult = fetchResult.sorted(by: \.date, ascending: false)[start..<end]
+        let totalPage = fetchResult.count%Rule.displayCount == 0 ? fetchResult.count/Rule.displayCount : (fetchResult.count/Rule.displayCount)+1
+        
+        return .init(totalPage: totalPage, currentPage: query.page, productList: sortedResult.map{$0.toDomain()})
     }
     
     func deleteProduct(product: Product) throws {
