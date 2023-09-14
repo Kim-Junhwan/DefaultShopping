@@ -42,6 +42,7 @@ class BookmarkViewController: BaseViewController {
         productListView.sortButtonCollectionView.isHidden = true
         fetchProductList()
         productListView.productListCollectionView.reloadData()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +71,12 @@ class BookmarkViewController: BaseViewController {
         }
     }
     
+    private func resetPage() {
+        productList.removeAll()
+        currentPage = 0
+        totalPage = 1
+    }
+    
 }
 
 extension BookmarkViewController: ProductSearchListViewDelegate {
@@ -82,10 +89,8 @@ extension BookmarkViewController: ProductSearchListViewDelegate {
         return productList.count
     }
     
-    func search(keyword: String, selectedSort: Sort) {
-        productList.removeAll()
-        currentPage = 0
-        totalPage = 1
+    func realTimeSearch(keyword: String) {
+        resetPage()
         if keyword.isEmpty {
             fetchProductList()
         } else {
@@ -111,9 +116,7 @@ extension BookmarkViewController: ProductSearchListViewDelegate {
         let repeatNum = currentPage
         do {
             let result = try set(product: product)
-            productList.removeAll()
-            currentPage = 0
-            totalPage = 1
+            resetPage()
             for _ in 0..<repeatNum {
                 fetchProductList()
             }
@@ -123,7 +126,13 @@ extension BookmarkViewController: ProductSearchListViewDelegate {
             showErrorAlert(error: error)
             return nil
         }
-        
+    }
+    
+    func reloadData(keyword: String, selectedSort: Sort, endRefresh: @escaping () -> Void) {
+        resetPage()
+        fetchProductList(title: keyword)
+        endRefresh()
+        productListView.productListCollectionView.reloadData()
     }
     
 }
