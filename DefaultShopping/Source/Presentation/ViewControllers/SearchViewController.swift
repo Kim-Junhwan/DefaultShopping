@@ -59,10 +59,16 @@ class SearchViewController: BaseViewController {
         title = "쇼핑검색"
     }
     
-    func fetchProductList(keyword: String, sort: Sort = .sim) {
+    private func resetPage() {
+        currentPage = 0
+        totalPage = 1
+        productList.removeAll()
+    }
+    
+    func fetchProductList(keyword: String, sort: Sort = .sim, completion: (()-> Void)? = nil) {
         isFetching = true
         if keyword.isEmpty {
-            productList.removeAll()
+            resetPage()
             productListView.productListCollectionView.reloadData()
             return
         }
@@ -76,6 +82,7 @@ class SearchViewController: BaseViewController {
             case .failure(let failure):
                 self.showErrorAlert(error: failure)
             }
+            completion?()
             self.isFetching = false
         }
     }
@@ -91,9 +98,7 @@ extension SearchViewController: ProductSearchListViewDelegate {
     }
     
     func search(keyword: String, selectedSort: Sort) {
-        self.currentPage = 0
-        self.totalPage = 1
-        productList.removeAll()
+        resetPage()
         productListView.productListCollectionView.reloadData()
         fetchProductList(keyword: keyword, sort: selectedSort)
     }
@@ -117,6 +122,14 @@ extension SearchViewController: ProductSearchListViewDelegate {
         } catch {
             showErrorAlert(error: error)
             return nil
+        }
+    }
+    
+    func reloadData(keyword: String, selectedSort: Sort, endRefresh: @escaping () -> Void) {
+        resetPage()
+        productListView.productListCollectionView.reloadData()
+        fetchProductList(keyword: keyword, sort: selectedSort) {
+            endRefresh()
         }
     }
     
