@@ -42,7 +42,6 @@ class BookmarkViewController: BaseViewController {
         productListView.sortButtonCollectionView.isHidden = true
         fetchProductList()
         productListView.productListCollectionView.reloadData()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
     override func viewDidAppear(_ animated: Bool) {

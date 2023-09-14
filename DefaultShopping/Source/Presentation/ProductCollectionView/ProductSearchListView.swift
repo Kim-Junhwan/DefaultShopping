@@ -88,6 +88,7 @@ final class ProductSearchListView: UIView {
         super.init(frame: frame)
         configureView()
         setConstraints()
+        setSortCollectionViewFlowlayout()
     }
     
     required init?(coder: NSCoder) {
@@ -98,7 +99,6 @@ final class ProductSearchListView: UIView {
         super.layoutSubviews()
         stackView.layoutIfNeeded()
         setProductCollectionViewFlowlayout()
-        setSortCollectionViewFlowlayout()
     }
     
     private func configureView() {
@@ -133,7 +133,7 @@ final class ProductSearchListView: UIView {
         let itemSize = (productListCollectionView.frame.width - Double(40)) / Double(2)
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 15
-        flowLayout.itemSize = CGSize(width: itemSize, height: itemSize * 1.5 )
+        flowLayout.itemSize = CGSize(width: itemSize, height: itemSize * 1.7 )
         productListCollectionView.collectionViewLayout = flowLayout
     }
     
