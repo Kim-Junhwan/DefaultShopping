@@ -20,6 +20,7 @@ class BaseViewController: UIViewController {
         let appearence = UINavigationBarAppearance()
         appearence.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationItem.standardAppearance = appearence
+        navigationController?.navigationBar.tintColor = .white
     }
     
     func configureView() {
@@ -32,7 +33,9 @@ class BaseViewController: UIViewController {
         let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let ok = UIAlertAction(title: "확인", style: .default)
         alert.addAction(ok)
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
     }
 
 }
