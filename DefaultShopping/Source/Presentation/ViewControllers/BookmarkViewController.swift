@@ -54,7 +54,6 @@ class BookmarkViewController: BaseViewController {
     
     private func fetchProductList(title: String = "") {
         let fetchProductList = realmReposity.fetchSavedProcutPage(query: .init(title: title, page: nextPage))
-        print(fetchProductList)
         currentPage = fetchProductList.currentPage
         totalPage = fetchProductList.totalPage
         productList.append(contentsOf: fetchProductList.productList)

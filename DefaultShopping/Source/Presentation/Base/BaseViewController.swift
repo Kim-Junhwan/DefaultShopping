@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -30,10 +31,10 @@ class BaseViewController: UIViewController {
     }
     
     func showErrorAlert(error: Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .default)
-        alert.addAction(ok)
         DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default)
+            alert.addAction(ok)
             self.present(alert, animated: true)
         }
     }
