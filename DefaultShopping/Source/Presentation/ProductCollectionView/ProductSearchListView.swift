@@ -95,9 +95,8 @@ final class ProductSearchListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        stackView.layoutIfNeeded()
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         setProductCollectionViewFlowlayout()
     }
     
@@ -115,19 +114,22 @@ final class ProductSearchListView: UIView {
             make.top.bottom.equalTo(safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
         }
+        searchBar.setContentHuggingPriority(.init(150), for: .vertical)
         searchBar.snp.makeConstraints { make in
             make.width.equalToSuperview()
         }
+        sortButtonCollectionView.setContentHuggingPriority(.init(250), for: .vertical)
         sortButtonCollectionView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalTo(50)
         }
+        productListCollectionView.setContentHuggingPriority(.init(249), for: .vertical)
         productListCollectionView.snp.makeConstraints { make in
             make.width.equalToSuperview()
         }
     }
     
-    private func setProductCollectionViewFlowlayout() {
+    func setProductCollectionViewFlowlayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
         let itemSize = (productListCollectionView.frame.width - Double(40)) / Double(2)

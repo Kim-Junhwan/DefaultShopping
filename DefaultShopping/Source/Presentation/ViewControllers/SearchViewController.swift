@@ -42,7 +42,6 @@ class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productListView.productListCollectionView.reloadData()
     }
     
     override func loadView() {

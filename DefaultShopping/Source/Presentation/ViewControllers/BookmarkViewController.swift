@@ -37,15 +37,13 @@ class BookmarkViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "좋아요 목록"
-        productListView.delegate = self
-        productListView.sortButtonCollectionView.isHidden = true
         fetchProductList()
-        productListView.productListCollectionView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func configureView() {
+        title = "좋아요 목록"
+        productListView.sortButtonCollectionView.isHidden = true
+        productListView.delegate = self
     }
     
     override func loadView() {
