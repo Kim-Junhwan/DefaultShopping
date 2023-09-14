@@ -150,10 +150,6 @@ final class ProductSearchListView: UIView {
     
     @objc private func productCollectionViewRefresh() {
         guard let searchKeyword = searchBar.text else { return }
-        if searchKeyword.isEmpty {
-            self.productListCollectionView.refreshControl?.endRefreshing()
-            return
-        }
         delegate?.reloadData(keyword: searchKeyword, selectedSort: selectSort, endRefresh: {
             self.productListCollectionView.refreshControl?.endRefreshing()
         })

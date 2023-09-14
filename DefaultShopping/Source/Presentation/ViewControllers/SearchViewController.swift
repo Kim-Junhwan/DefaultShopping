@@ -69,6 +69,7 @@ class SearchViewController: BaseViewController {
         if keyword.isEmpty {
             resetPage()
             productListView.productListCollectionView.reloadData()
+            completion?()
             return
         }
         searchUseCase.search(searchKeyword: keyword, page: nextPage, sort: sort) { result in
