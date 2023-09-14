@@ -118,6 +118,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        productImageView.image = nil
+        productImageView.image = UIImage(named: "ready")
     }
 }
