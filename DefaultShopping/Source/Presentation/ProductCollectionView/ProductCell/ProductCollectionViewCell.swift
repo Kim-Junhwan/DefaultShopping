@@ -53,6 +53,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     let priceLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         return label
     }()
