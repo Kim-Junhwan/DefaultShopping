@@ -9,12 +9,19 @@ import UIKit
 import SnapKit
 
 protocol ProductSearchListViewDelegate: AnyObject {
-    func search(keyword: String, selectedSort: Sort)
     func fetchNextProductList(keyword: String)
     func tapProductCollectionView(product: Product)
     func productCollectionViewItemCount() -> Int
     func productCollectionViewCellForRowAt(at indexPath: IndexPath) -> Product?
     func tapLikeButton(index: Int) -> Bool?
+    func search(keyword: String, selectedSort: Sort)
+    func realTimeSearch(keyword: String)
+    func reloadData(keyword: String, selectedSort: Sort, endRefresh: @escaping () -> Void)
+}
+
+extension ProductSearchListViewDelegate {
+    func search(keyword: String, selectedSort: Sort) {}
+    func realTimeSearch(keyword: String) {}
 }
 
 final class ProductSearchListView: UIView {
@@ -43,7 +50,9 @@ final class ProductSearchListView: UIView {
         collectionView.keyboardDismissMode = .onDrag
         collectionView.delegate = productCollectionViewDeleData
         collectionView.dataSource = productCollectionViewDeleData
-        
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.tintColor = .white
+        collectionView.refreshControl?.addTarget(self, action: #selector(productCollectionViewRefresh), for: .valueChanged)
         return collectionView
     }()
     
@@ -136,6 +145,17 @@ final class ProductSearchListView: UIView {
         flowLayout.scrollDirection = .horizontal
         sortButtonCollectionView.collectionViewLayout = flowLayout
     }
+    
+    @objc private func productCollectionViewRefresh() {
+        guard let searchKeyword = searchBar.text else { return }
+        if searchKeyword.isEmpty {
+            self.productListCollectionView.refreshControl?.endRefreshing()
+            return
+        }
+        delegate?.reloadData(keyword: searchKeyword, selectedSort: selectSort, endRefresh: {
+            self.productListCollectionView.refreshControl?.endRefreshing()
+        })
+    }
 }
 
 extension ProductSearchListView: UISearchBarDelegate {
@@ -158,7 +178,7 @@ extension ProductSearchListView: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let searchKeyword = searchBar.text else { return }
-        delegate?.search(keyword: searchKeyword, selectedSort: selectSort)
+        delegate?.realTimeSearch(keyword: searchKeyword)
     }
 }
 
