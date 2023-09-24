@@ -33,13 +33,16 @@ extension DefaultNetworkService: NetworkService {
             let request = try endPoint.makeURLRequest(networkConfig: config)
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
-                    if let response = response as? HTTPURLResponse {
-                        completion(.failure(.responseError(statusCode: response.statusCode, data: data)))
-                    } else {
-                        completion(.failure(.networkError(error: error)))
-                    }
+                    completion(.failure(.networkError(error: error)))
                 } else {
-                    completion(.success(data))
+                    if let response = response as? HTTPURLResponse {
+                        if (200..<300) ~= response.statusCode {
+                            completion(.success(data))
+                        } else {
+                            completion(.failure(.responseError(statusCode: response.statusCode, data: data)))
+                        }
+                    }
+                    
                 }
             }.resume()
         } catch {
