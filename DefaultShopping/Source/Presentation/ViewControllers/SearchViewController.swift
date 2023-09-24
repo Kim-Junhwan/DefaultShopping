@@ -49,12 +49,10 @@ class SearchViewController: BaseViewController {
     }
     
     override func configureView() {
-        super.configureView()
         productListView.delegate = self
     }
     
     override func setConstraints() {
-        super.setConstraints()
         title = "쇼핑검색"
     }
     
