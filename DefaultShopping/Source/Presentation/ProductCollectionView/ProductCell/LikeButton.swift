@@ -11,22 +11,22 @@ class LikeButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
-        tintColor = .black
+        setButton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setButton() {
+        backgroundColor = .white
+        tintColor = .black
+        setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        setImage(UIImage(systemName: "heart"), for: .normal)
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = bounds.height/2
-    }
-    
-    override var isSelected: Bool {
-        didSet {
-            isSelected ? setImage(UIImage(systemName: "heart.fill"), for: .normal) : setImage(UIImage(systemName: "heart"), for: .normal)
-        }
     }
 }
