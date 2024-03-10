@@ -37,6 +37,7 @@ class BookmarkViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.setLeftBarButton(productListView.listTypeButton, animated: false)
         fetchProductList()
     }
     

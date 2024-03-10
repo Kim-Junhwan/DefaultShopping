@@ -269,7 +269,6 @@
 		C71B67002AAD73C900F31616 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				C7E5C8CF2B9E0023000449C7 /* ProductTableView */,
 				C71B67602AAFE2B700F31616 /* DatasourceDelegate */,
 				C71B67212AADE21B00F31616 /* ViewControllers */,
 				C71B67112AAD919E00F31616 /* ProductCollectionView */,
@@ -349,13 +348,6 @@
 				C71B676F2AB0B64500F31616 /* SortCollectionViewDeleDatasource.swift */,
 			);
 			path = DatasourceDelegate;
-			sourceTree = "<group>";
-		};
-		C7E5C8CF2B9E0023000449C7 /* ProductTableView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ProductTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
