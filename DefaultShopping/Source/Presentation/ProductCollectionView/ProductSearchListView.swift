@@ -19,6 +19,11 @@ protocol ProductSearchListViewDelegate: AnyObject {
     func reloadData(keyword: String, selectedSort: Sort, endRefresh: @escaping () -> Void)
 }
 
+enum ListType {
+    case collectionView
+    case tableView
+}
+
 extension ProductSearchListViewDelegate {
     func search(keyword: String, selectedSort: Sort) {}
     func realTimeSearch(keyword: String) {}
@@ -34,6 +39,17 @@ final class ProductSearchListView: UIView {
         return stackView
     }()
     
+    lazy var listTypeButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: .init(systemName: "list.bullet"), style: .done, target: self, action: #selector(tapListTypeButton))
+        switch self.listType {
+        case .collectionView:
+            button.image = .init(systemName: "list.bullet")
+        case .tableView:
+            button.image = .init(systemName: "rectangle.grid.2x2.fill")
+        }
+        return button
+    }()
+    
     lazy var searchBar: UISearchBar = {
        let searchBar = UISearchBar()
         searchBar.barTintColor = .black
@@ -46,6 +62,7 @@ final class ProductSearchListView: UIView {
     lazy var productListCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        collectionView.register(TableProductCollectionViewCell.self, forCellWithReuseIdentifier: TableProductCollectionViewCell.identifier)
         collectionView.backgroundColor = .clear
         collectionView.keyboardDismissMode = .onDrag
         collectionView.delegate = productCollectionViewDeleData
@@ -77,6 +94,8 @@ final class ProductSearchListView: UIView {
     }()
     
     weak var delegate: ProductSearchListViewDelegate?
+    var listType: ListType = .collectionView
+    private var cellWidth: CGFloat = -1
     
     private var selectSort: Sort {
         get {
@@ -132,10 +151,25 @@ final class ProductSearchListView: UIView {
     func setProductCollectionViewFlowlayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
-        let itemSize = (productListCollectionView.frame.width - Double(40)) / Double(2)
+        if cellWidth == -1 {
+            let itemSize = (productListCollectionView.frame.width - Double(40)) / Double(2)
+            flowLayout.itemSize = CGSize(width: itemSize, height: itemSize * 1.7 )
+            cellWidth = itemSize
+        } else {
+            flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth * 1.7 )
+        }
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 15
-        flowLayout.itemSize = CGSize(width: itemSize, height: itemSize * 1.7 )
+        productListCollectionView.collectionViewLayout = flowLayout
+    }
+    
+    func setProductCollectionViewTableViewFlowLayout() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
+        let itemSize = productListCollectionView.frame.width - Double(40)
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.minimumInteritemSpacing = 15
+        flowLayout.itemSize = CGSize(width: itemSize, height: 90)
         productListCollectionView.collectionViewLayout = flowLayout
     }
     
@@ -153,6 +187,22 @@ final class ProductSearchListView: UIView {
         delegate?.reloadData(keyword: searchKeyword, selectedSort: selectSort, endRefresh: {
             self.productListCollectionView.refreshControl?.endRefreshing()
         })
+    }
+    
+    @objc private func tapListTypeButton() {
+        let contentOffset = productListCollectionView.contentOffset
+        if listType == .collectionView {
+            self.listType = .tableView
+            self.listTypeButton.image = .init(systemName: "rectangle.grid.2x2.fill")
+            setProductCollectionViewTableViewFlowLayout()
+        } else {
+            self.listType = .collectionView
+            self.listTypeButton.image = .init(systemName: "list.bullet")
+            setProductCollectionViewFlowlayout()
+        }
+        productListCollectionView.reloadData()
+        productListCollectionView.layoutIfNeeded()
+        productListCollectionView.setContentOffset(contentOffset, animated: false)
     }
 }
 
@@ -181,6 +231,9 @@ extension ProductSearchListView: UISearchBarDelegate {
 }
 
 extension ProductSearchListView: ProductListDeleDataObjectDelegate {
+    func getListType() -> ListType {
+        return listType
+    }
     
     func productCount() -> Int {
         return delegate?.productCollectionViewItemCount() ?? 0
@@ -196,6 +249,7 @@ extension ProductSearchListView: ProductListDeleDataObjectDelegate {
     }
     
     func tapProductCell(product: Product) {
+        print(productListCollectionView.contentOffset.y)
         delegate?.tapProductCollectionView(product: product)
     }
     

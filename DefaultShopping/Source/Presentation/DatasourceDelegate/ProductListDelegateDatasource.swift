@@ -14,6 +14,7 @@ protocol ProductListDeleDataObjectDelegate: AnyObject {
     func productCount()-> Int
     func cellForRowAt(at indexPath: IndexPath) -> Product?
     func tapLikeButton(index: Int) -> Bool?
+    func getListType() -> ListType
 }
 
 final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -31,16 +32,26 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return .init() }
-        guard let product = delegate?.cellForRowAt(at: indexPath) else { return .init() }
-        cell.configureCell(product: product)
-        cell.likeButton.tag = indexPath.row
-        cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
-        return cell
+        if delegate?.getListType() == .collectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return .init() }
+            guard let product = delegate?.cellForRowAt(at: indexPath) else { return .init() }
+            cell.configureCell(product: product)
+            cell.likeButton.tag = indexPath.row
+            cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TableProductCollectionViewCell.identifier, for: indexPath) as? TableProductCollectionViewCell else { return .init() }
+            guard let product = delegate?.cellForRowAt(at: indexPath) else { return .init() }
+            cell.configureCell(product: product)
+            cell.likeButton.tag = indexPath.row
+            cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
+            return cell
+        }
+        
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if scrollView.contentOffset.y >=  (scrollView.contentSize.height-scrollView.frame.height) {
+        if scrollView.contentOffset.y >= (scrollView.contentSize.height-scrollView.frame.height) {
             delegate?.fetchNextPage()
         }
     }

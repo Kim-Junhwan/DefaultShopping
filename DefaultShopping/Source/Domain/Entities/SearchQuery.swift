@@ -26,7 +26,6 @@ enum Sort: String, CaseIterable {
 }
 
 struct SearchQuery {
-    
     let query: String
     let page: Int
     let sort: Sort

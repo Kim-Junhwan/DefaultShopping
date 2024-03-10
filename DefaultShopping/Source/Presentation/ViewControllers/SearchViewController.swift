@@ -42,6 +42,7 @@ class SearchViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.setLeftBarButton(productListView.listTypeButton, animated: false)
     }
     
     override func loadView() {
