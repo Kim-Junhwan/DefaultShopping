@@ -18,15 +18,16 @@ extension UIImageView {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 10.0
         let session = URLSession(configuration: sessionConfig)
-        session.dataTask(with: .init(url: url)) { data, response, error in
+        let request = URLRequest(url: url)
+        session.dataTask(with: request) { data, response, error in
             let fetchImage: UIImage?
             if let error = error {
                 fetchImage = UIImage(systemName: "xmark")
             } else {
-                guard let data, let safeImage = UIImage(data: data) else { return }
+                guard let data, let response, let safeImage = UIImage(data: data) else { return }
                 fetchImage = UIImage(data: data)
                 DispatchQueue.main.async {
-                    ImageCacheManager.shared.cache.setObject(safeImage, forKey: NSString(string: imagePath))
+                    ImageCacheManager.shared.cache.storeCachedResponse(.init(response: response, data: data), for: request)
                     self.image = fetchImage
                 }
             }
