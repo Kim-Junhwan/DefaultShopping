@@ -73,7 +73,8 @@ class TableProductCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setView()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -82,8 +83,6 @@ class TableProductCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setView()
-        setConstraints()
     }
     
     private func setView() {

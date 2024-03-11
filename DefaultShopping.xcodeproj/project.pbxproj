@@ -47,6 +47,7 @@
 		C71B67702AB0B64500F31616 /* SortCollectionViewDeleDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B676F2AB0B64500F31616 /* SortCollectionViewDeleDatasource.swift */; };
 		C71B67892AB2059000F31616 /* BookmarkSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71B67882AB2059000F31616 /* BookmarkSearchQuery.swift */; };
 		C77944D92B9EC021003FE400 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77944D82B9EC021003FE400 /* ImageCacheManager.swift */; };
+		C77944DB2B9EEF50003FE400 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77944DA2B9EEF50003FE400 /* ImageFetcher.swift */; };
 		C7E5C8D12B9E04C4000449C7 /* TableProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E5C8D02B9E04C4000449C7 /* TableProductCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		C71B676F2AB0B64500F31616 /* SortCollectionViewDeleDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCollectionViewDeleDatasource.swift; sourceTree = "<group>"; };
 		C71B67882AB2059000F31616 /* BookmarkSearchQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSearchQuery.swift; sourceTree = "<group>"; };
 		C77944D82B9EC021003FE400 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		C77944DA2B9EEF50003FE400 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		C7E5C8D02B9E04C4000449C7 /* TableProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableProductCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -357,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				C77944D82B9EC021003FE400 /* ImageCacheManager.swift */,
+				C77944DA2B9EEF50003FE400 /* ImageFetcher.swift */,
 			);
 			path = ImageCaching;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				C71B66FA2AAC0FA300F31616 /* SearchResponseDTO.swift in Sources */,
 				C71B67892AB2059000F31616 /* BookmarkSearchQuery.swift in Sources */,
 				C71B670E2AAD81A100F31616 /* BaseViewController.swift in Sources */,
+				C77944DB2B9EEF50003FE400 /* ImageFetcher.swift in Sources */,
 				C71B66F12AAB725C00F31616 /* DataTransferService.swift in Sources */,
 				C71B66FD2AAC879800F31616 /* Rule.swift in Sources */,
 				C71B67622AAFE2CF00F31616 /* ProductListDelegateDatasource.swift in Sources */,

@@ -11,7 +11,7 @@ struct ProductPage {
     let productList: [Product]
 }
 
-struct Product {
+struct Product: Equatable {
     let id: Int
     let title: String
     let imagePath: String

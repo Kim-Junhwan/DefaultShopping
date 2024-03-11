@@ -197,8 +197,8 @@ final class ProductSearchListView: UIView {
             setProductCollectionViewFlowlayout()
         }
         productListCollectionView.reloadData()
-        productListCollectionView.layoutIfNeeded()
-        productListCollectionView.setContentOffset(contentOffset, animated: false)
+//        productListCollectionView.layoutIfNeeded()
+//        productListCollectionView.setContentOffset(contentOffset, animated: false)
     }
 }
 

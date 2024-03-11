@@ -7,6 +7,13 @@
 
 import UIKit
 
+enum ImageStatus {
+    case empty
+    case success(UIImage)
+    case fail
+    case loading
+}
+
 class ProductCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: ProductCollectionViewCell.self)
@@ -60,7 +67,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setView()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -69,9 +77,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        stackView.layoutIfNeeded()
-        setView()
-        setConstraints()
     }
     
     private func setView() {
@@ -115,6 +120,17 @@ class ProductCollectionViewCell: UICollectionViewCell {
         formatter.numberStyle = .decimal
         guard let formattedText = formatter.string(from: .init(value: price)) else { return "" }
         return formattedText
+    }
+    
+    func updateImageStatus(status: ImageStatus) {
+        switch status {
+        case .success(let uIImage):
+            productImageView.image = uIImage
+        case .fail:
+            productImageView.image = UIImage(systemName: "xmark")
+        case .loading, .empty:
+            productImageView.image = UIImage(named: "ready")
+        }
     }
     
     override func prepareForReuse() {

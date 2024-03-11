@@ -20,6 +20,7 @@ protocol ProductListDeleDataObjectDelegate: AnyObject {
 final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     
     weak var delegate: ProductListDeleDataObjectDelegate?
+    private let imageFetcher = ImageFetcher()
     
     @objc private func tapLikeButton(_ sender: UIButton) {
         guard let delegate else { return }
@@ -32,16 +33,21 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let product = delegate?.cellForRowAt(at: indexPath) else { return .init() }
         if delegate?.getListType() == .collectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return .init() }
-            guard let product = delegate?.cellForRowAt(at: indexPath) else { return .init() }
             cell.configureCell(product: product)
             cell.likeButton.tag = indexPath.row
             cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
+            cell.updateImageStatus(status: imageFetcher.fetchedImage(product: product))
+            imageFetcher.fetchAsync(product: product) { status in
+                DispatchQueue.main.async {
+                    cell.updateImageStatus(status: status)
+                }
+            }
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TableProductCollectionViewCell.identifier, for: indexPath) as? TableProductCollectionViewCell else { return .init() }
-            guard let product = delegate?.cellForRowAt(at: indexPath) else { return .init() }
             cell.configureCell(product: product)
             cell.likeButton.tag = indexPath.row
             cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
@@ -60,8 +66,17 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
         guard let product = delegate?.cellForRowAt(at: indexPath) else { return }
         delegate?.tapProductCell(product: product)
     }
+}
+
+extension ProductListDelegateDatasource: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        
+    }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print( scrollView.contentOffset.y)
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            guard let product = delegate?.cellForRowAt(at: indexPath) else { return }
+            imageFetcher.cancelFetch(product)
+        }
     }
 }
