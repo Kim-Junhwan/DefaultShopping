@@ -61,4 +61,7 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
         delegate?.tapProductCell(product: product)
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print( scrollView.contentOffset.y)
+    }
 }

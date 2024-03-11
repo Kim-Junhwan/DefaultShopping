@@ -32,7 +32,7 @@ extension ProductSearchListViewDelegate {
 final class ProductSearchListView: UIView {
     
     let stackView: UIStackView = {
-       let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 5
@@ -51,14 +51,14 @@ final class ProductSearchListView: UIView {
     }()
     
     lazy var searchBar: UISearchBar = {
-       let searchBar = UISearchBar()
+        let searchBar = UISearchBar()
         searchBar.barTintColor = .black
         searchBar.searchTextField.textColor = .white
         searchBar.tintColor = .white
         searchBar.delegate = self
         return searchBar
     }()
-
+    
     lazy var productListCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
@@ -79,8 +79,8 @@ final class ProductSearchListView: UIView {
         collectionView.register(SortCollectionViewCell.self, forCellWithReuseIdentifier: SortCollectionViewCell.identifier)
         collectionView.delegate = sortCollectionViewDeleData
         collectionView.dataSource = sortCollectionViewDeleData
-         return collectionView
-     }()
+        return collectionView
+    }()
     
     lazy var productCollectionViewDeleData: ProductListDelegateDatasource = {
         let deledelta = ProductListDelegateDatasource()
@@ -151,13 +151,9 @@ final class ProductSearchListView: UIView {
     func setProductCollectionViewFlowlayout() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: .zero, left: 10, bottom: .zero, right: 10)
-        if cellWidth == -1 {
-            let itemSize = (productListCollectionView.frame.width - Double(40)) / Double(2)
-            flowLayout.itemSize = CGSize(width: itemSize, height: itemSize * 1.7 )
-            cellWidth = itemSize
-        } else {
-            flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth * 1.7 )
-        }
+        let itemSize = (productListCollectionView.frame.width - Double(40)) / Double(2)
+        flowLayout.itemSize = CGSize(width: itemSize, height: itemSize * 1.7 )
+        cellWidth = itemSize
         flowLayout.minimumLineSpacing = 10
         flowLayout.minimumInteritemSpacing = 15
         productListCollectionView.collectionViewLayout = flowLayout
@@ -249,7 +245,6 @@ extension ProductSearchListView: ProductListDeleDataObjectDelegate {
     }
     
     func tapProductCell(product: Product) {
-        print(productListCollectionView.contentOffset.y)
         delegate?.tapProductCollectionView(product: product)
     }
     

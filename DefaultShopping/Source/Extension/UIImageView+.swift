@@ -10,6 +10,10 @@ import UIKit
 
 extension UIImageView {
     func setImageFromImagePath(imagePath: String) {
+        if let image = ImageCacheManager.shared.checkProfileImageInCache(imageURL: imagePath) {
+            self.image = image
+            return
+        }
         guard let url = URL(string: imagePath) else { return }
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 10.0
@@ -19,11 +23,12 @@ extension UIImageView {
             if let error = error {
                 fetchImage = UIImage(systemName: "xmark")
             } else {
-                guard let data else { return }
+                guard let data, let safeImage = UIImage(data: data) else { return }
                 fetchImage = UIImage(data: data)
-            }
-            DispatchQueue.main.async {
-                self.image = fetchImage
+                DispatchQueue.main.async {
+                    ImageCacheManager.shared.cache.setObject(safeImage, forKey: NSString(string: imagePath))
+                    self.image = fetchImage
+                }
             }
         }.resume()
     }
