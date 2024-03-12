@@ -67,6 +67,7 @@ final class ProductSearchListView: UIView {
         collectionView.keyboardDismissMode = .onDrag
         collectionView.delegate = productCollectionViewDeleData
         collectionView.dataSource = productCollectionViewDeleData
+        collectionView.prefetchDataSource = productCollectionViewDeleData
         collectionView.refreshControl = UIRefreshControl()
         collectionView.refreshControl?.tintColor = .white
         collectionView.refreshControl?.addTarget(self, action: #selector(productCollectionViewRefresh), for: .valueChanged)
@@ -197,8 +198,8 @@ final class ProductSearchListView: UIView {
             setProductCollectionViewFlowlayout()
         }
         productListCollectionView.reloadData()
-//        productListCollectionView.layoutIfNeeded()
-//        productListCollectionView.setContentOffset(contentOffset, animated: false)
+        productListCollectionView.layoutIfNeeded()
+        productListCollectionView.setContentOffset(contentOffset, animated: false)
     }
 }
 

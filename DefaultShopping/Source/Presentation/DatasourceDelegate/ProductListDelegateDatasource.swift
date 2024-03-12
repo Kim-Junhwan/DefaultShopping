@@ -36,13 +36,15 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
         guard let product = delegate?.cellForRowAt(at: indexPath) else { return .init() }
         if delegate?.getListType() == .collectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else { return .init() }
-            cell.configureCell(product: product)
+            cell.product = product
             cell.likeButton.tag = indexPath.row
             cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
-            cell.updateImageStatus(status: imageFetcher.fetchedImage(product: product))
-            imageFetcher.fetchAsync(product: product) { status in
+            cell.configureCell(product: product)
+            imageFetcher.fetchAsync(product: product) { image in
                 DispatchQueue.main.async {
-                    cell.updateImageStatus(status: status)
+                    if cell.product?.id == product.id {
+                        cell.updateImage(image: image)
+                    }
                 }
             }
             return cell
@@ -51,6 +53,12 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
             cell.configureCell(product: product)
             cell.likeButton.tag = indexPath.row
             cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
+//            cell.updateImageStatus(status: imageFetcher.fetchedImage(product: product))
+//            imageFetcher.fetchAsync(product: product) { status in
+//                DispatchQueue.main.async {
+//                    cell.updateImageStatus(status: status)
+//                }
+//            }
             return cell
         }
         
@@ -70,7 +78,10 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
 
 extension ProductListDelegateDatasource: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        
+        for indexPath in indexPaths {
+            guard let product = delegate?.cellForRowAt(at: indexPath) else { return }
+            imageFetcher.fetchAsync(product: product)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {

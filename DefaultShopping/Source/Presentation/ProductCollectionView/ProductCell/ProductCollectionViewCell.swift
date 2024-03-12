@@ -8,15 +8,14 @@
 import UIKit
 
 enum ImageStatus {
-    case empty
     case success(UIImage)
     case fail
-    case loading
 }
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: ProductCollectionViewCell.self)
+    var product: Product?
     
     let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -108,7 +107,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(product: Product) {
-        productImageView.setImageFromImagePath(imagePath: product.imagePath)
+        productImageView.image = UIImage(named: "ready")
         likeButton.isSelected = product.like
         mallLabel.text = product.mall
         productNameLabel.text = product.title
@@ -122,15 +121,8 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return formattedText
     }
     
-    func updateImageStatus(status: ImageStatus) {
-        switch status {
-        case .success(let uIImage):
-            productImageView.image = uIImage
-        case .fail:
-            productImageView.image = UIImage(systemName: "xmark")
-        case .loading, .empty:
-            productImageView.image = UIImage(named: "ready")
-        }
+    func updateImage(image: UIImage?) {
+            productImageView.image = image
     }
     
     override func prepareForReuse() {

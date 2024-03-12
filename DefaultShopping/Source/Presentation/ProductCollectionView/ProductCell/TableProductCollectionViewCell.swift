@@ -110,11 +110,19 @@ class TableProductCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(product: Product) {
-        productImageView.setImageFromImagePath(imagePath: product.imagePath)
         likeButton.isSelected = product.like
         mallLabel.text = product.mall
         productNameLabel.text = product.title
         priceLabel.text = priceFormat(price: product.price)
+    }
+    
+    func updateImageStatus(status: ImageStatus) {
+        switch status {
+        case .success(let uIImage):
+            productImageView.image = uIImage
+        case .fail:
+            productImageView.image = UIImage(systemName: "xmark")
+        }
     }
     
     private func priceFormat(price: Int) -> String {

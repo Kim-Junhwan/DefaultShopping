@@ -12,14 +12,13 @@ final class ImageCacheManager {
     
     static let shared = ImageCacheManager()
     
-    let cache = URLCache.shared
+    let cache = NSCache<NSString, UIImage>()
     
     private init() {}
     
     func checkProfileImageInCache(imageURL: String) -> UIImage? {
-        guard let url = URL(string: imageURL) else { return nil }
-        if let chachedResponse = cache.cachedResponse(for: .init(url: url)) {
-            return .init(data: chachedResponse.data)
+        if let image = cache.object(forKey: .init(string: imageURL)) {
+            return image
         }
         return nil
     }
