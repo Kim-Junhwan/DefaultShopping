@@ -50,15 +50,17 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TableProductCollectionViewCell.identifier, for: indexPath) as? TableProductCollectionViewCell else { return .init() }
+            cell.product = product
             cell.configureCell(product: product)
             cell.likeButton.tag = indexPath.row
             cell.likeButton.addTarget(self, action: #selector(tapLikeButton), for: .touchUpInside)
-//            cell.updateImageStatus(status: imageFetcher.fetchedImage(product: product))
-//            imageFetcher.fetchAsync(product: product) { status in
-//                DispatchQueue.main.async {
-//                    cell.updateImageStatus(status: status)
-//                }
-//            }
+            imageFetcher.fetchAsync(product: product) { image in
+                DispatchQueue.main.async {
+                    if cell.product?.id == product.id {
+                        cell.updateImage(image: image)
+                    }
+                }
+            }
             return cell
         }
         
@@ -72,6 +74,7 @@ final class ProductListDelegateDatasource: NSObject, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let product = delegate?.cellForRowAt(at: indexPath) else { return }
+        print(product)
         delegate?.tapProductCell(product: product)
     }
 }

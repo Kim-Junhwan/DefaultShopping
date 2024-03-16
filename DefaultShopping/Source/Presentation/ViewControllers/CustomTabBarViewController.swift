@@ -11,8 +11,11 @@ class CustomTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .black
+        tabBar.standardAppearance = appearance
         tabBar.tintColor = .white
-        tabBar.backgroundColor = .clear
+        tabBar.unselectedItemTintColor = .gray
     }
     
     override func setViewControllers(_ viewControllers: [UIViewController]?, animated: Bool) {

@@ -10,6 +10,7 @@ import UIKit
 class TableProductCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: TableProductCollectionViewCell.self)
+    var product: Product?
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -116,13 +117,8 @@ class TableProductCollectionViewCell: UICollectionViewCell {
         priceLabel.text = priceFormat(price: product.price)
     }
     
-    func updateImageStatus(status: ImageStatus) {
-        switch status {
-        case .success(let uIImage):
-            productImageView.image = uIImage
-        case .fail:
-            productImageView.image = UIImage(systemName: "xmark")
-        }
+    func updateImage(image: UIImage?) {
+            productImageView.image = image
     }
     
     private func priceFormat(price: Int) -> String {
